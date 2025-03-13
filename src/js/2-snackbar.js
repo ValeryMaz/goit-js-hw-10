@@ -25,24 +25,24 @@ function submitForm(event) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (selectedState === 'fulfilled') {
-          resolve(`Fulfilled promise in ${delay}ms`);
+          resolve(delay);
         } else {
-          reject(`Rejected promise in ${delay}ms`);
+          reject(delay);
         }
       }, delay);
     });
   };
   makePromise(delay, selectedState)
-    .then(message =>
+    .then(delay =>
       iziToast.success({
         title: 'Success',
-        message: message,
+        message: `Fulfilled promise in ${delay}ms`,
       })
     )
     .catch(message =>
       iziToast.error({
         title: 'Error',
-        message: message,
+        message: `Rejected promise in ${delay}ms`,
       })
     );
 }

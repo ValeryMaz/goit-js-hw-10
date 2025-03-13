@@ -10,7 +10,6 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const input = document.querySelector('#datetime-picker');
 const btn = document.querySelector('[data-start]');
-btn.disabled = true;
 
 let userSelectedDate = null;
 const options = {
@@ -20,10 +19,15 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] < new Date()) {
-      return alert('Please choose a date in the future');
+      iziToast.error({
+        title: 'Помилка',
+        message: 'Будь ласка, оберіть дату в майбутньому',
+      });
+      btn.disabled = true;
+    } else {
+      btn.disabled = false;
+      userSelectedDate = selectedDates[0];
     }
-    btn.disabled = false;
-    userSelectedDate = selectedDates[0];
   },
 };
 
