@@ -39,7 +39,8 @@ function submitForm(event) {
         message: `Fulfilled promise in ${delay}ms`,
       })
     )
-    .catch(message =>
+
+    .catch(delay =>
       iziToast.error({
         title: 'Error',
         message: `Rejected promise in ${delay}ms`,
